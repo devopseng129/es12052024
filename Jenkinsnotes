@@ -97,3 +97,11 @@ HOUR	The hour of the day (0–23)
 DOM	The day of the month (1–31)
 MONTH	The month (1–12)
 DOW	The day of the week (0–7) where 0 and 7 are Sunday
+
+
+> webhook : github will inform jenkins for latest commit and will initiate job trigger.
+115d80ac835020f42b7a7b9f0c924f0992
+jenkinsurl/github-webhook/ example: http://65.0.205.139:8080/github-webhook/
+
+> Create users in Jenkins Database.
+Manage jenkins > users> Createuser
