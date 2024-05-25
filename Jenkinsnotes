@@ -1,0 +1,99 @@
+FOr build: Maven, Ant and Gradle
+Maven and Jenkins notes:
+------------------------
+> Maven is a build tool used to create packages
+> Maven works on well defined directory structure
+> Maven has a configuration : POM.xml (Project Object Model)
+> Plugins are defined in POM.xml file in GAV format.
+> G=> group id, A==> Artifact id, V==> Application version.
+> group id: Name of company
+> Artifact id: name of project
+> Version
+> Maven life cycle:
+	gather requrement
+	compilation : compile
+	testing : test
+	install : install
+	package : package
+	deploy : deploy
+> Maven non-default lifecycle
+	Site: Used to create documentation
+	clean: To clean all runtime files when its not needed anymore.
+
+
+> Any requirement provided to maven is accepet as a goal by Maven and Maven uses certain plugins to execute those goals.
+> plugin : It is a third part software needed to execute goal 
+
+>mvn --version
+> apt install maven ==> ubuntu, debian
+> yum install maven ==> rhel, centos
+> tree ==> Used to display structure of a directory.
+> mvn archtype:generate
+> mvn compile ==> compile our code
+> mvn test ==> provided test results
+> mvn package ==> create .jar file
+> mvn clean ==> cleaned target directory
+> mvn site ==> create all help files.
+
+
+
+
+Jenkins:
+------------
+web based CICD tool developed by hudson:
+CICD: Continuous integration and continuous deployment.
+
+> Scenerio1: understanding jenkins pre-reqs
+sudo apt install default-jre              # version 2:1.11-72build1, or
+sudo apt install openjdk-11-jre-headless  # version 11.0.14+9-0ubuntu2
+sudo apt install openjdk-17-jre-headless  # version 17.0.2+8-1
+sudo apt install openjdk-18-jre-headless  # version 18~36ea-1
+sudo apt install openjdk-8-jre-headless   # version 8u312-b07-0ubuntu1
+
+> Scenerio2: Jenkins installtion
+https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
+
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+
+> systemctl status jenkins
+> scenerio3: Jenkins default port
+8080
+
+
+vi /usr/lib/systemd/system/jenkins.service
+Environment="JENKINS_PORT=8080"
+
+
+> scenerio 3:
+> Create jenkins job
+	Freestyle jobs: User inteface based job
+	Pipeline job: Coded
+> Jenkins plugin
+manage Jenkins > plugins > 1.updates(updates on installed plugin) 
+2.available plugins(plugins which is available in jenkins for installation) 
+3.Installed plugins(plugins which are already installed) 
+4.Adavanced(allows you to write code to create a plugin)
+
+> Jenkins security > manage jenkins > security
+1. Authentication: who can login
+sso: single sign on works on AD(active directory), LDAP protocols
+2. Authorization: what a logged in user can do
+> Matrix  based : restrict priviles to user on Jenkins level as well as on job/project/build level.
+> project based matrix: restrict priviles to user on Jenkins level as well as on job/project/build level, but grant elevated priveleges on a specific job/project/build.
+
+> Integrate scm/vcs (github) with Jenkins > choose option git and provide repo url and select right branch.
+> AUtomated trigger of pipeline
+> Poll scm :  the syntax of cron: define the schedule using below format
+: https://crontab.guru/
+MINUTE HOUR DOM MONTH DOW
+MINUTE	Minutes within the hour (0–59)
+HOUR	The hour of the day (0–23)
+DOM	The day of the month (1–31)
+MONTH	The month (1–12)
+DOW	The day of the week (0–7) where 0 and 7 are Sunday
